@@ -16,14 +16,14 @@ const TerserPlugin = require("terser-webpack-plugin");
 const { getAngularCompilerPlugin } = require("nativescript-dev-webpack/plugins/NativeScriptAngularCompilerPlugin");
 const hashSalt = Date.now().toString();
 
-module.exports = (originalAngularConfig, env) => {
+module.exports = env => {
     // Add your custom Activities, Services and other Android app components here.
     const appComponents = [
         "tns-core-modules/ui/frame",
         "tns-core-modules/ui/frame/activity",
     ];
 
-    const platform = 'android';//env && (env.android && "android" || env.ios && "ios");
+    const platform = env && (env.android && "android" || env.ios && "ios");
     if (!platform) {
         throw new Error("You need to provide a target platform!");
     }
@@ -37,7 +37,7 @@ module.exports = (originalAngularConfig, env) => {
     const {
         // The 'appPath' and 'appResourcesPath' values are fetched from
         // the nsconfig.json configuration file.
-        appPath = "projects/mobile-one/src",
+        appPath = "src",
         appResourcesPath = "App_Resources",
 
         // You can provide the following flags when running 'tns run android|ios'

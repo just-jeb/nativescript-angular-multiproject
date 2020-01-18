@@ -68,7 +68,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-
+              "path": "./webpack-angular-builders-mobile.js"
             },
             "outputPath": "platforms/android/app/src/main/assets/app",
             "index": "projects/mobile-one/src/index.html",
