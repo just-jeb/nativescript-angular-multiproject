@@ -70,7 +70,7 @@
             "customWebpackConfig": {
 
             },
-            "outputPath": "dist/mobile-one",
+            "outputPath": "platforms/android/app/src/main/assets/app",
             "index": "projects/mobile-one/src/index.html",
             "main": "projects/mobile-one/src/main.ts",
             "tsConfig": "projects/mobile-one/tsconfig.app.json",
