@@ -1,6 +1,16 @@
 {
   "name": "ns-mutli-project",
   "version": "0.0.0",
+  "nativescript": {
+    "id": "org.nativescript.HelloWorld",
+    "templateVersion": "v2",
+    "tns-android": {
+      "version": "6.3.0"
+    },
+    "tns-ios": {
+      "version": "6.3.0"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,6 +29,9 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
+    "@nativescript/core": "^6.3.2",
+    "@nativescript/theme": "^2.2.1",
+    "nativescript-angular": "^8.20.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
