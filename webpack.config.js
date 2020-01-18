@@ -16,14 +16,14 @@ const TerserPlugin = require("terser-webpack-plugin");
 const { getAngularCompilerPlugin } = require("nativescript-dev-webpack/plugins/NativeScriptAngularCompilerPlugin");
 const hashSalt = Date.now().toString();
 
-module.exports = env => {
+module.exports = (originalAngularConfig, env) => {
     // Add your custom Activities, Services and other Android app components here.
     const appComponents = [
         "tns-core-modules/ui/frame",
         "tns-core-modules/ui/frame/activity",
     ];
 
-    const platform = env && (env.android && "android" || env.ios && "ios");
+    const platform = 'android';//env && (env.android && "android" || env.ios && "ios");
     if (!platform) {
         throw new Error("You need to provide a target platform!");
     }
@@ -37,7 +37,7 @@ module.exports = env => {
     const {
         // The 'appPath' and 'appResourcesPath' values are fetched from
         // the nsconfig.json configuration file.
-        appPath = "src",
+        appPath = "projects/mobile-one/src",
         appResourcesPath = "App_Resources",
 
         // You can provide the following flags when running 'tns run android|ios'
@@ -83,6 +83,7 @@ module.exports = env => {
 
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
     const entryModule = `${nsWebpack.getEntryModule(appFullPath, platform)}.ts`;
+
     const entryPath = `.${sep}${entryModule}`;
     const entries = { bundle: entryPath };
     const areCoreModulesExternal = Array.isArray(env.externals) && env.externals.some(e => e.indexOf("tns-core-modules") > -1);
@@ -128,6 +129,7 @@ module.exports = env => {
     let sourceMapFilename = nsWebpack.getSourceMapFilename(hiddenSourceMap, __dirname, dist);
 
     const itemsToClean = [`${dist}/**/*`];
+
     if (platform === "android") {
         itemsToClean.push(`${join(projectRoot, "platforms", "android", "app", "src", "main", "assets", "snapshots")}`);
         itemsToClean.push(`${join(projectRoot, "platforms", "android", "app", "build", "configurations", "nativescript-android-snapshot")}`);
@@ -136,6 +138,7 @@ module.exports = env => {
     const noEmitOnErrorFromTSConfig = getNoEmitOnErrorFromTSConfig(join(projectRoot, tsConfigName));
 
     nsWebpack.processAppComponents(appComponents, platform);
+
     const config = {
         mode: production ? "production" : "development",
         context: appFullPath,

@@ -64,6 +64,55 @@
             }
           }
         },
+        "tns-preview": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+
+            },
+            "outputPath": "dist/mobile-one",
+            "index": "projects/mobile-one/src/index.html",
+            "main": "projects/mobile-one/src/main.ts",
+            "tsConfig": "projects/mobile-one/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/mobile-one/src/favicon.ico",
+              "projects/mobile-one/src/assets"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/mobile-one/src/environments/environment.ts",
+                  "with": "projects/mobile-one/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
