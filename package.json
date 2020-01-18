@@ -13,7 +13,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng run mobile-one:tns-preview",
+    "start": "ng run mobile-one:tns-preview && tns preview",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
